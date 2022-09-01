@@ -10,18 +10,7 @@ app.use(express.json())
 
 app.use(cors())
 
-var cerouno= ["I","D","D"];
-var cerodos= ["A","D"];
-var cerotres=["D","I","D"];
-var unocero= ["I","I","D"];
-var unodos=  ["D","D","D","I"];
-var unotres= ["D","D","A","D","I"];
-var doscero= ["I","A"];
-var dosuno=  ["D","I","I","I"];
-var dostres= ["D","D","D","I"];
-var trescero=["I","D","I"];
-var tresuno= ["D","I","A","I","I"];
-var tresdos= ["I","D","D","D"];
+
 
 //const routes = require('./routes');
 //app.use(routes)
@@ -104,56 +93,284 @@ app.listen('3001', function() {
 
               switch(ruta[i]){
                 case "cerouno":
+                if(Buffer.from(bufferData).toString()=="1")
+                {
+                  izquierda();
+                }
+                if(Buffer.from(bufferData).toString()=="2")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="3")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="4")
+                {
+                  final();
+                }
                   
                 break;
                 case "cerodos":
-                  
+                  if(Buffer.from(bufferData).toString()=="1")
+                  {
+                    adelante();
+                  }
+                  if(Buffer.from(bufferData).toString()=="2")
+                  {
+                    derecha();
+                  } 
+                  if(Buffer.from(bufferData).toString()=="3")
+                {
+                  final();
+                }
                 break;
                 case "cerotres":
-                  
+                if(Buffer.from(bufferData).toString()=="1")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="2")
+                {
+                  izquierda();
+                }
+                if(Buffer.from(bufferData).toString()=="3")
+                {
+                  derecha();
+                }  
+                if(Buffer.from(bufferData).toString()=="4")
+                {
+                  final();
+                }
                 break;
                 case "unocero":
-                  
+                if(Buffer.from(bufferData).toString()=="1")
+                {
+                  izquierda();
+                }
+                if(Buffer.from(bufferData).toString()=="2")
+                {
+                  izquierda();
+                }
+                if(Buffer.from(bufferData).toString()=="3")
+                {
+                  derecha();
+                }  
+                if(Buffer.from(bufferData).toString()=="4")
+                {
+                  final();
+                }
                 break;
                 case "unodos":
-                  
+                if(Buffer.from(bufferData).toString()=="1")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="2")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="3")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="4")
+                {
+                  izquierda();
+                }
+                if(Buffer.from(bufferData).toString()=="5")
+                {
+                  final();
+                }
+               
                 break;
-                case "unotres":
-                  
+                case "unotres":["D","D","A","D","I"];
+                if(Buffer.from(bufferData).toString()=="1")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="2")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="3")
+                {
+                  adelante();
+                }
+                if(Buffer.from(bufferData).toString()=="4")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="5")
+                {
+                  izquierda();
+                }
+                if(Buffer.from(bufferData).toString()=="6")
+                {
+                  final();
+                }
                 break;
                 case "doscero":
-                  
+                if(Buffer.from(bufferData).toString()=="1")
+                {
+                  izquierda();
+                }
+                if(Buffer.from(bufferData).toString()=="2")
+                {
+                  adelante();
+                }
+                if(Buffer.from(bufferData).toString()=="3")
+                {
+                  final();
+                }
                 break;
                 case "dosuno":
-                  
+                if(Buffer.from(bufferData).toString()=="1")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="2")
+                {
+                  izquierda();
+                }
+                if(Buffer.from(bufferData).toString()=="3")
+                {
+                  izquierda();
+                }
+                if(Buffer.from(bufferData).toString()=="4")
+                {
+                  izquierda();
+                }  
+                if(Buffer.from(bufferData).toString()=="5")
+                {
+                  final();
+                }
                 break;
                 case "dostres":
-                  
+                if(Buffer.from(bufferData).toString()=="1")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="2")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="3")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="4")
+                {
+                  izquierda();
+                } 
+                if(Buffer.from(bufferData).toString()=="5")
+                {
+                  final();
+                }
                 break;
-                case "trescero":
-                  
+                case "trescero":["I","D","I"];
+                if(Buffer.from(bufferData).toString()=="1")
+                {
+                  izquierda();
+                }
+                if(Buffer.from(bufferData).toString()=="2")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="3")
+                {
+                  izquierda();
+                }
+                if(Buffer.from(bufferData).toString()=="4")
+                {
+                  final();
+                }
+                
                 break;
                 case "tresuno":
-                  
+                if(Buffer.from(bufferData).toString()=="1")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="2")
+                {
+                  izquierda();
+                }
+                if(Buffer.from(bufferData).toString()=="3")
+                {
+                  adelante();
+                }
+                if(Buffer.from(bufferData).toString()=="4")
+                {
+                  izquierda();
+                }
+                if(Buffer.from(bufferData).toString()=="5")
+                {
+                  izquierda();
+                }  
+                if(Buffer.from(bufferData).toString()=="6")
+                {
+                  final();
+                }
                 break;
                 case "tresdos":
-                  
+                if(Buffer.from(bufferData).toString()=="1")
+                {
+                  izquierda();
+                }
+                if(Buffer.from(bufferData).toString()=="2")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="3")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="4")
+                {
+                  derecha();
+                }
+                if(Buffer.from(bufferData).toString()=="5")
+                {
+                  final();
+                }
+               
                 break;
                
               }
+              /*
+var cerouno= ["I","D","D"];
+var cerodos= ["A","D"];
+var cerotres=["D","I","D"];
 
+var unocero= ["I","I","D"];
+
+var unodos=  ["D","D","D","I"];
+
+var unotres= ["D","D","A","D","I"];
+var doscero= ["I","A"];
+var dosuno=  ["D","I","I","I"];
+var dostres= ["D","D","D","I"];
+var trescero=["I","D","I"];
+var tresuno= ["D","I","A","I","I"];
+var tresdos= ["I","D","D","D"];
+*/
             }
-            //Primero, hacemos que gire a la izquierda
-            if(Buffer.from(bufferData).toString()=="1")
-            {
-              btSerial.write(Buffer.from('I\n'), errFunction);
-            }
-            //Luego hacemos que gire a la derecha
-            if(Buffer.from(bufferData).toString()=="2")
-            {
+
+            function derecha(){
               btSerial.write(Buffer.from('D\n'), errFunction);
             }
+            function izquierda(){
+              btSerial.write(Buffer.from('I\n'), errFunction);
+            }
+            function adelante(){
+              btSerial.write(Buffer.from('A\n'), errFunction);
+            }
 
+            function final(){
+              btSerial.write(Buffer.from('F\n'), errFunction);
+            }
+           
             
           });
         }, errFunction);
