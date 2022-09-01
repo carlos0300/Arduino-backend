@@ -104,7 +104,40 @@ app.listen('3001', function() {
 
               switch(ruta[i]){
                 case "cerouno":
-                  console.log("aqui pase");
+                  
+                break;
+                case "cerodos":
+                  
+                break;
+                case "cerotres":
+                  
+                break;
+                case "unocero":
+                  
+                break;
+                case "unodos":
+                  
+                break;
+                case "unotres":
+                  
+                break;
+                case "doscero":
+                  
+                break;
+                case "dosuno":
+                  
+                break;
+                case "dostres":
+                  
+                break;
+                case "trescero":
+                  
+                break;
+                case "tresuno":
+                  
+                break;
+                case "tresdos":
+                  
                 break;
                
               }
