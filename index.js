@@ -90,7 +90,8 @@ app.listen('3001', function() {
             
             console.log(Buffer.from(bufferData).toString());
             for(i=0;i<=ruta.length;i++){
-
+              console.log(Buffer.from(bufferData).toString())
+              console.log(ruta[i]);
               switch(ruta[i]){
                 case "cerouno":
                 if(Buffer.from(bufferData).toString()=="1")
