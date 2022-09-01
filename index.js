@@ -10,9 +10,67 @@ app.use(express.json())
 
 app.use(cors())
 
-const routes = require('./routes');
-app.use(routes)
+var cerouno= ["I","D","D"];
+var cerodos= ["A","D"];
+var cerotres=["D","I","D"];
+var unocero= ["I","I","D"];
+var unodos=  ["D","D","D","I"];
+var unotres= ["D","D","A","D","I"];
+var doscero= ["I","A"];
+var dosuno=  ["D","I","I","I"];
+var dostres= ["D","D","D","I"];
+var trescero=["I","D","I"];
+var tresuno= ["D","I","A","I","I"];
+var tresdos= ["I","D","D","D"];
 
+//const routes = require('./routes');
+//app.use(routes)
+const router = express.Router()
+var ruta=[];
+var ruti='';
+app.use(router);
+router.post('/addroute',cors(),body.urlencoded({extended:false}),(req,res) => {
+    console.log(req.body.length);
+    for( i=1;i<=req.body.length;i++){
+      if(req.body[i-1].inicio==0){
+      ruti="cero";
+      }else{
+        if(req.body[i-1].inicio==1){
+          ruti="uno";
+          }else{
+            if(req.body[i-1].inicio==2){
+              ruti="dos";
+              }else{
+                if(req.body[i-1].inicio==3){
+                  ruti="tres";
+                }
+             }
+          }
+      }
+      if(req.body[i-1].final==0){
+        ruti=ruti+"cero";
+        }else{
+          if(req.body[i-1].final==1){
+            ruti=ruti+"uno";
+            }else{
+              if(req.body[i-1].final==2){
+                ruti=ruti+"dos";
+                }else{
+                  if(req.body[i-1].final==3){
+                    ruti=ruti+"tres";
+                  }
+               }
+            }
+        }
+     ruta[i-1]=ruti;
+    }
+    for( i=1;i<=req.body.length;i++){
+      console.log(ruta[i-1]);
+    }
+    //console.log(req.body[0].inicio)
+    res.send("ok")
+
+})
 var btSerial = new (require("bluetooth-serial-port").BluetoothSerialPort)();
 
 //Generic Error Handler for the BT Serial Port library as requires error functions
@@ -22,36 +80,36 @@ const errFunction = (err) =>{
    }
 };
 
-// Connecting to BT device can take a few seconds so a little console.log to keep you entertained.
-// Are you not entertained?
+//rutas
 
-/*
-  For this to work you will have to connect to the Bluetooth device on your computer in the normal way
-  I.e via Bluetooth settings: Default password is usually 0000 or 1234
-*/
-
-// Once BtSerial.inquire finds a device it will call this code
-// BtSerial.inquire will find all devices currently connected with your computer
 
 app.use(express.static(__dirname + '/public/'));
 
 app.listen('3001', function() {
+
   console.log('Servidor web escuchando en el puerto 3001');
 
   btSerial.on('found', function(address, name) {
-    // If a device is found and the name contains 'HC' we will continue
-    // This is so that it doesn't try to send data to all your other connected BT devices
+    //conexión
     if(name.includes('CARRITO')){
-
       console.log('Connecting to: ', name);
       btSerial.findSerialPortChannel(address, function(channel) {
-        // Finds then serial port channel and then connects to it
+        
         btSerial.connect(address, channel, function() {
-          // Now the magic begins, bTSerial.on('data', callbackFunc) listens to the bluetooth device.
-          // If any data is received from it the call back function is used
+          
           btSerial.on('data', function(bufferData) {
-            // The data is encoded so we convert it to a string using Nodes Buffer.from func
+            
             console.log(Buffer.from(bufferData).toString());
+            for(i=0;i<=ruta.length;i++){
+
+              switch(ruta[i]){
+                case "cerouno":
+                  console.log("aqui pase");
+                break;
+               
+              }
+
+            }
             //Primero, hacemos que gire a la izquierda
             if(Buffer.from(bufferData).toString()=="1")
             {
@@ -63,21 +121,14 @@ app.listen('3001', function() {
               btSerial.write(Buffer.from('D\n'), errFunction);
             }
 
-            // Now we have received some data from the Arduino we talk to it.
-            // We Create a Buffered string using Nodes Buffer.from function
-            // It needs to be buffered so the entire string is sent together
-            // We also add an escape character '\n' to the end of the string
-            // This is so Arduino knows that we've sent everything we want
-            //btSerial.write(Buffer.from('siuuuu x2\n'), errFunction);
+            
           });
         }, errFunction);
       },errFunction);
-    }/*else{
-      console.log('Not connecting to: ', name);
-    }*/
+    }
 });
 
-// Starts looking for Bluetooth devices and calls the function btSerial.on('found'
+
 btSerial.inquire();
 
 });
