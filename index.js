@@ -17,10 +17,17 @@ app.use(cors())
 const router = express.Router()
 var ruta=[];
 var ruti='';
+
+var paso=0;
+
 app.use(router);
+
 router.post('/addroute',cors(),body.urlencoded({extended:false}),(req,res) => {
+
     console.log(req.body.length);
+
     for( i=1;i<=req.body.length;i++){
+
       if(req.body[i-1].inicio==0){
       ruti="cero";
       }else{
@@ -36,6 +43,7 @@ router.post('/addroute',cors(),body.urlencoded({extended:false}),(req,res) => {
              }
           }
       }
+
       if(req.body[i-1].final==0){
         ruti=ruti+"cero";
         }else{
@@ -51,15 +59,23 @@ router.post('/addroute',cors(),body.urlencoded({extended:false}),(req,res) => {
                }
             }
         }
+
      ruta[i-1]=ruti;
+
     }
+
     for( i=1;i<=req.body.length;i++){
       console.log(ruta[i-1]);
     }
+
     //console.log(req.body[0].inicio)
+
     res.send("ok")
 
 })
+
+
+
 var btSerial = new (require("bluetooth-serial-port").BluetoothSerialPort)();
 
 //Generic Error Handler for the BT Serial Port library as requires error functions
@@ -70,6 +86,7 @@ const errFunction = (err) =>{
 };
 
 //rutas
+
 
 
 app.use(express.static(__dirname + '/public/'));
@@ -88,30 +105,43 @@ app.listen('3001', function() {
           
           btSerial.on('data', function(bufferData) {
             
-            console.log(Buffer.from(bufferData).toString());
-            for(i=0;i<=ruta.length;i++){
-              console.log(Buffer.from(bufferData).toString())
-              console.log(ruta[i]);
-              switch(ruta[i]){
+            //console.log(Buffer.from(bufferData).toString());
+            
+           /* while(finish==false)
+            {
+            */
+
+              
+              
+              console.log(ruta[paso]);
+
+              switch(ruta[paso]){
+
                 case "cerouno":
+               console.log(Buffer.from(bufferData).toString());
+
                 if(Buffer.from(bufferData).toString()=="1")
                 {
                   izquierda();
                 }
+                
                 if(Buffer.from(bufferData).toString()=="2")
                 {
                   derecha();
                 }
+
                 if(Buffer.from(bufferData).toString()=="3")
                 {
                   derecha();
                 }
+
                 if(Buffer.from(bufferData).toString()=="4")
                 {
                   final();
                 }
                   
                 break;
+
                 case "cerodos":
                   if(Buffer.from(bufferData).toString()=="1")
                   {
@@ -125,7 +155,9 @@ app.listen('3001', function() {
                 {
                   final();
                 }
+
                 break;
+
                 case "cerotres":
                 if(Buffer.from(bufferData).toString()=="1")
                 {
@@ -143,7 +175,9 @@ app.listen('3001', function() {
                 {
                   final();
                 }
+
                 break;
+
                 case "unocero":
                 if(Buffer.from(bufferData).toString()=="1")
                 {
@@ -161,7 +195,9 @@ app.listen('3001', function() {
                 {
                   final();
                 }
+
                 break;
+
                 case "unodos":
                 if(Buffer.from(bufferData).toString()=="1")
                 {
@@ -185,7 +221,8 @@ app.listen('3001', function() {
                 }
                
                 break;
-                case "unotres":["D","D","A","D","I"];
+
+                case "unotres":
                 if(Buffer.from(bufferData).toString()=="1")
                 {
                   derecha();
@@ -210,7 +247,9 @@ app.listen('3001', function() {
                 {
                   final();
                 }
+
                 break;
+
                 case "doscero":
                 if(Buffer.from(bufferData).toString()=="1")
                 {
@@ -224,7 +263,9 @@ app.listen('3001', function() {
                 {
                   final();
                 }
+                
                 break;
+
                 case "dosuno":
                 if(Buffer.from(bufferData).toString()=="1")
                 {
@@ -246,7 +287,9 @@ app.listen('3001', function() {
                 {
                   final();
                 }
+
                 break;
+
                 case "dostres":
                 if(Buffer.from(bufferData).toString()=="1")
                 {
@@ -268,8 +311,10 @@ app.listen('3001', function() {
                 {
                   final();
                 }
+
                 break;
-                case "trescero":["I","D","I"];
+
+                case "trescero":
                 if(Buffer.from(bufferData).toString()=="1")
                 {
                   izquierda();
@@ -288,6 +333,7 @@ app.listen('3001', function() {
                 }
                 
                 break;
+
                 case "tresuno":
                 if(Buffer.from(bufferData).toString()=="1")
                 {
@@ -313,7 +359,9 @@ app.listen('3001', function() {
                 {
                   final();
                 }
+
                 break;
+
                 case "tresdos":
                 if(Buffer.from(bufferData).toString()=="1")
                 {
@@ -339,15 +387,13 @@ app.listen('3001', function() {
                 break;
                
               }
-              /*
+
+/*
 var cerouno= ["I","D","D"];
 var cerodos= ["A","D"];
 var cerotres=["D","I","D"];
-
 var unocero= ["I","I","D"];
-
 var unodos=  ["D","D","D","I"];
-
 var unotres= ["D","D","A","D","I"];
 var doscero= ["I","A"];
 var dosuno=  ["D","I","I","I"];
@@ -356,7 +402,9 @@ var trescero=["I","D","I"];
 var tresuno= ["D","I","A","I","I"];
 var tresdos= ["I","D","D","D"];
 */
-            }
+          
+
+          
 
             function derecha(){
               btSerial.write(Buffer.from('D\n'), errFunction);
@@ -370,7 +418,10 @@ var tresdos= ["I","D","D","D"];
 
             function final(){
               btSerial.write(Buffer.from('F\n'), errFunction);
+             
+              paso++;
             }
+          
            
             
           });
@@ -380,6 +431,11 @@ var tresdos= ["I","D","D","D"];
 });
 
 
+router.get('/getposition',cors(),body.urlencoded({extended:false}),(req,res) => {
+console.log(paso);
+  res.json(paso)
+}
+)
 btSerial.inquire();
 
 });
