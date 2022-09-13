@@ -92,7 +92,6 @@ const errFunction = (err) =>{
 app.use(express.static(__dirname + '/public/'));
 
 app.listen('3001', function() {
-  console.log(algo);
   console.log('Servidor web escuchando en el puerto 3001');
 
   btSerial.on('found', function(address, name) {
@@ -429,18 +428,11 @@ var tresdos= ["I","D","D","D"];
       },errFunction);
     }
 });
-var algo=0;
 
-function incre(){
-  algo++;
-  
-}
-function aqui(){
-  setInterval(incre,5000);
-}
+
 router.get('/getposition',cors(),body.urlencoded({extended:false}),(req,res) => {
-aqui();
-var position=[{"paso":algo}];
+
+var position=[{'paso':paso}];
 
   res.json(position)
  
