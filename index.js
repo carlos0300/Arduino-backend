@@ -131,7 +131,7 @@ app.listen('3001', function() {
 
                 if(Buffer.from(bufferData).toString()=="3")
                 {
-                  derecha();
+                  izquierda();
                 }
 
                 if(Buffer.from(bufferData).toString()=="4")
@@ -148,7 +148,7 @@ app.listen('3001', function() {
                   }
                   if(Buffer.from(bufferData).toString()=="2")
                   {
-                    derecha();
+                    izquierda();
                   } 
                   if(Buffer.from(bufferData).toString()=="3")
                 {
@@ -180,7 +180,7 @@ app.listen('3001', function() {
                 case "unocero":
                 if(Buffer.from(bufferData).toString()=="1")
                 {
-                  izquierda();
+                  derecha();
                 }
                 if(Buffer.from(bufferData).toString()=="2")
                 {
@@ -200,7 +200,7 @@ app.listen('3001', function() {
                 case "unodos":
                 if(Buffer.from(bufferData).toString()=="1")
                 {
-                  derecha();
+                  izquierda();
                 }
                 if(Buffer.from(bufferData).toString()=="2")
                 {
@@ -212,7 +212,7 @@ app.listen('3001', function() {
                 }
                 if(Buffer.from(bufferData).toString()=="4")
                 {
-                  izquierda();
+                  derecha();
                 }
                 if(Buffer.from(bufferData).toString()=="5")
                 {
@@ -252,7 +252,7 @@ app.listen('3001', function() {
                 case "doscero":
                 if(Buffer.from(bufferData).toString()=="1")
                 {
-                  izquierda();
+                  derecha();
                 }
                 if(Buffer.from(bufferData).toString()=="2")
                 {
@@ -268,7 +268,7 @@ app.listen('3001', function() {
                 case "dosuno":
                 if(Buffer.from(bufferData).toString()=="1")
                 {
-                  derecha();
+                  izquierda();
                 }
                 if(Buffer.from(bufferData).toString()=="2")
                 {
@@ -280,7 +280,7 @@ app.listen('3001', function() {
                 }
                 if(Buffer.from(bufferData).toString()=="4")
                 {
-                  izquierda();
+                  derecha();
                 }  
                 if(Buffer.from(bufferData).toString()=="5")
                 {
